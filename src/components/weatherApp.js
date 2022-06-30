@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import WeatherForm from "./weatherForm";
 import WeatherMainInfo from "./weatherMainInfo";
+import styles from './weatherApp.module.css';
+import Loader from "./loader";
 const WeatherApp = ()=>{
     const [weather, setWeather] = useState(null);
 
@@ -28,9 +30,12 @@ const WeatherApp = ()=>{
         loadInfo(city);
     }
     return(
-        <div>
+        <div className={styles.weatherContainer}>
+       
             <WeatherForm onChangeCity={handleChangeCity}/>
-            <WeatherMainInfo weather={weather}/>
+            
+            {weather?<WeatherMainInfo weather={weather}/>:<Loader/>}
+            
         </div>
     )
 }
